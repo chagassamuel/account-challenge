@@ -8,9 +8,19 @@ import java.math.BigDecimal;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public record BacenRequest(String idOriginAccount,
+public record BacenRequest(AccountRequest originAccount,
                            String originFullname,
-                           String idTargetAccount,
+                           AccountRequest targetAccount,
                            String targetFullname,
                            BigDecimal value) {
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+    public record AccountRequest(String companyCode,
+                                 String agencyNumber,
+                                 String account_number,
+                                 String checkDigit) {
+
+    }
+
 }

@@ -46,7 +46,8 @@ public class AccountFacade {
             final String originFullname = hwService.getPersonFullname(originAccountEntity.getIdPerson());
             final String targetFullname = hwService.getPersonFullname(targetAccountEntity.getIdPerson());
 
-            final BacenRequest bacenRequest = bacenMapper.toBacenRequest(transferAccountRequest, originFullname, targetFullname);
+            final BacenRequest bacenRequest = bacenMapper.toBacenRequest(originAccountEntity, originFullname,
+                    targetAccountEntity, targetFullname, transferAccountRequest.value());
             bacenService.notifyTransfer(bacenRequest);
         }
     }
