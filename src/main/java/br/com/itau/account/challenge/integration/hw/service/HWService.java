@@ -3,6 +3,7 @@ package br.com.itau.account.challenge.integration.hw.service;
 import br.com.itau.account.challenge.integration.hw.client.HWClient;
 import br.com.itau.account.challenge.integration.hw.domain.response.HWResponse;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,8 @@ public class HWService {
         return response.getBody();
     }
 
-    @CircuitBreaker(name = "personCB", fallbackMethod = "getPersonFullnameFallback")
+    @Retry(name = "personRT", fallbackMethod = "getPersonFullnameFallback")
+    @CircuitBreaker(name = "personCB")
     @Cacheable("persons")
     public String getPersonFullname(final String idPerson) {
         return this.getPerson(idPerson).fullname();

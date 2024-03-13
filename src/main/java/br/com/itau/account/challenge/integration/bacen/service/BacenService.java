@@ -5,6 +5,7 @@ import br.com.itau.account.challenge.integration.bacen.domain.request.BacenReque
 import br.com.itau.account.challenge.integration.bacen.domain.response.BacenResponse;
 import br.com.itau.account.challenge.kafka.KafkaProducer;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,8 @@ public class BacenService {
     private final BacenClient bacenClient;
     private final KafkaProducer kafkaProducer;
 
-    @CircuitBreaker(name = "bacenCB", fallbackMethod = "notifyTransferFallback")
+    @Retry(name = "bacenRT", fallbackMethod = "notifyTransferFallback")
+    @CircuitBreaker(name = "bacenCB")
     public BacenResponse notifyTransfer(final BacenRequest request) {
         return bacenClient.notifyTransfer(request).getBody();
     }
