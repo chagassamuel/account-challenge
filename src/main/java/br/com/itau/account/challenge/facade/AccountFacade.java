@@ -43,6 +43,7 @@ public class AccountFacade {
             final StatementEntity targetCredit = accountMapper.toStatementEntity(targetAccountEntity, transferAccountRequest, StatementTypeEnum.CREDIT);
             accountService.transfer(originAccountEntity, targetAccountEntity, originDebit, targetCredit, transferAccountRequest.value());
 
+            // paralelizar chamadas HW RXJava, CompletableFuture
             final String originFullname = hwService.getPersonFullname(originAccountEntity.getIdPerson());
             final String targetFullname = hwService.getPersonFullname(targetAccountEntity.getIdPerson());
 
