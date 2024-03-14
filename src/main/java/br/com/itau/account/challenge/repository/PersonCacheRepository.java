@@ -13,11 +13,11 @@ public class PersonCacheRepository {
 
     private final RedisTemplate<String, PersonCacheEntity> redisTemplate;
 
-    public void save(PersonCacheEntity entity) {
-        redisTemplate.opsForValue().set(entity.getIdPerson(), entity);
+    public void save(final PersonCacheEntity entity) {
+        redisTemplate.opsForValue().set(entity.idPerson(), entity);
     }
 
-    public Optional<PersonCacheEntity> findById(String id) {
+    public Optional<PersonCacheEntity> findById(final String id) {
         return Optional.ofNullable(redisTemplate.opsForValue().get(id));
     }
 

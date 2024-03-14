@@ -1,15 +1,8 @@
 package br.com.itau.account.challenge.repository.entity.cache;
 
-import lombok.Builder;
-import lombok.Getter;
+import org.springframework.data.redis.core.RedisHash;
 
-import java.io.Serializable;
-
-@Getter
-@Builder
-public class PersonCacheEntity implements Serializable {
-
-    private String idPerson;
-    private String fullname;
+@RedisHash(value = "tb_itau_person_cache", timeToLive = 60 * 60 * 24)
+public record PersonCacheEntity(String idPerson, String fullname) {
 
 }

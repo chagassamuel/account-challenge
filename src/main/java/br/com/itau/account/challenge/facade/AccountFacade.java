@@ -11,6 +11,8 @@ import br.com.itau.account.challenge.repository.domain.StatementTypeEnum;
 import br.com.itau.account.challenge.repository.entity.AccountEntity;
 import br.com.itau.account.challenge.repository.entity.StatementEntity;
 import br.com.itau.account.challenge.service.AccountService;
+import br.com.itau.account.challenge.utils.RxJavaUtil;
+import io.reactivex.rxjava3.core.Observable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class AccountFacade {
     private final AccountService accountService;
     private final HWService hwService;
     private final BacenService bacenService;
+    private final RxJavaUtil rxJavaUtil;
 
     private final AccountMapper accountMapper;
     private final BacenMapper bacenMapper;
@@ -43,12 +46,13 @@ public class AccountFacade {
             final StatementEntity targetCredit = accountMapper.toStatementEntity(targetAccountEntity, transferAccountRequest, StatementTypeEnum.CREDIT);
             accountService.transfer(originAccountEntity, targetAccountEntity, originDebit, targetCredit, transferAccountRequest.value());
 
-            // paralelizar chamadas HW RXJava, CompletableFuture
-            final String originFullname = hwService.getPersonFullname(originAccountEntity.getIdPerson());
-            final String targetFullname = hwService.getPersonFullname(targetAccountEntity.getIdPerson());
+            final Observable<String> originFullnameObs = rxJavaUtil.getObservableParallel().map(s -> hwService.getPersonFullname(originAccountEntity.getIdPerson()));
+            final Observable<String> targetFullnameObs = rxJavaUtil.getObservableParallel().map(s -> hwService.getPersonFullname(targetAccountEntity.getIdPerson()));
 
-            final BacenRequest bacenRequest = bacenMapper.toBacenRequest(originAccountEntity, originFullname,
-                    targetAccountEntity, targetFullname, transferAccountRequest.value());
+            final BacenRequest bacenRequest = Observable.zip(originFullnameObs, targetFullnameObs, (originFullname, targetFullname) ->
+                    bacenMapper.toBacenRequest(originAccountEntity, originFullname,targetAccountEntity, targetFullname, transferAccountRequest.value())
+            ).blockingFirst();
+
             bacenService.notifyTransfer(bacenRequest);
         }
     }

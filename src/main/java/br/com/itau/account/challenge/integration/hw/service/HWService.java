@@ -8,6 +8,7 @@ import br.com.itau.account.challenge.repository.entity.cache.PersonCacheEntity;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 import static java.util.Objects.isNull;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class HWService {
@@ -44,7 +46,6 @@ public class HWService {
     }
 
     private HWResponse getPersonHW(final String idPerson) {
-        System.out.println("buscando: " + idPerson);
         final ResponseEntity<HWResponse> hwResponse = hwClient.getPerson(idPerson);
         if (isNull(hwResponse.getBody())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("person with id='%s' not found", idPerson));
@@ -53,7 +54,8 @@ public class HWService {
     }
 
     private String getPersonFullnameFallback(final Throwable e) {
-        return null;
+        log.warn("Retry getPersonFullnameFallback was called", e);
+        return "";
     }
 
 }

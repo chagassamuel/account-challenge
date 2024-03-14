@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "bacenClient", url = "${bacen.url}")
+@FeignClient(name = "bacenClient")
 public interface BacenClient {
 
     @PostMapping(value = "/bacen/transfer", consumes = MediaType.APPLICATION_JSON_VALUE)

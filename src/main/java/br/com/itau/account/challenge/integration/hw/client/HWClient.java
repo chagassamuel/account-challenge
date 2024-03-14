@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "hwClient", url = "${hw.url}")
+@FeignClient(name = "hwClient")
 public interface HWClient {
 
     @GetMapping(value = "/pessoas_fisicas/{id_pessoa}", consumes = MediaType.APPLICATION_JSON_VALUE)
