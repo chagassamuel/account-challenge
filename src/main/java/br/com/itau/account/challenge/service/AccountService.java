@@ -58,8 +58,8 @@ public class AccountService {
 
     public void transfer(final AccountEntity originAccountEntity, final AccountEntity targetAccountEntity,
                          final StatementEntity originDebit, final StatementEntity targetCredit, final BigDecimal value) {
-        originAccountEntity.setBalance(originAccountEntity.getBalance().subtract(value));
-        targetAccountEntity.setBalance(targetAccountEntity.getBalance().add(value));
+        originAccountEntity.subtractBalance(value);
+        targetAccountEntity.addBalance(value);
 
         statementRepository.saveAll(List.of(originDebit, targetCredit));
     }

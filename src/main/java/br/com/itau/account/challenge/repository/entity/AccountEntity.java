@@ -2,14 +2,15 @@ package br.com.itau.account.challenge.repository.entity;
 
 import br.com.itau.account.challenge.repository.domain.AccountStatusEnum;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_itau_account")
 public class AccountEntity implements Serializable {
@@ -40,12 +41,12 @@ public class AccountEntity implements Serializable {
     @Column(name = "status")
     private AccountStatusEnum status;
 
-//    @OneToMany(
-//            mappedBy = "originAccount",
-//            cascade = CascadeType.ALL,
-//            targetEntity = StatementEntity.class,
-//            fetch = FetchType.LAZY
-//    )
-//    private List<StatementEntity> statement;
+    public void addBalance(final BigDecimal value) {
+        this.balance = this.balance.add(value);
+    }
+
+    public void subtractBalance(final BigDecimal value) {
+        this.addBalance(value.negate());
+    }
 
 }

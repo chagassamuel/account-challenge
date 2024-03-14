@@ -3,7 +3,6 @@ package br.com.itau.account.challenge.controller.domain;
 import br.com.itau.account.challenge.controller.domain.request.TransferAccountRequest;
 import br.com.itau.account.challenge.controller.domain.response.BalanceAccountResponse;
 import br.com.itau.account.challenge.facade.AccountFacade;
-import feign.Response;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;

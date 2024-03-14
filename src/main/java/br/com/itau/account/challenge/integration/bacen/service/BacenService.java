@@ -7,8 +7,10 @@ import br.com.itau.account.challenge.kafka.KafkaProducer;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class BacenService {
@@ -23,7 +25,8 @@ public class BacenService {
     }
 
     private BacenResponse notifyTransferFallback(final BacenRequest request, final Throwable e) {
-        kafkaProducer.send(request);
+        log.warn("Retry notifyTransferFallback was called", e);
+        kafkaProducer.send();
         return null;
     }
 
