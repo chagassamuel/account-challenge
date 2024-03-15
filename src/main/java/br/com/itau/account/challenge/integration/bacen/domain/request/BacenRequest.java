@@ -18,7 +18,7 @@ public record BacenRequest(AccountRequest originAccount,
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
     public record AccountRequest(String companyCode,
                                  String agencyNumber,
-                                 String account_number,
+                                 String accountNumber,
                                  String checkDigit) {
 
     }
