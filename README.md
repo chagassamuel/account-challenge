@@ -121,9 +121,7 @@ antes, foram implementados os recursos de Caching (Redis), Retry e Circuit Break
 será enviado ao BACEN uma String vazia, uma vez que o nome não é obrigatório.
 - BACEN: também foram implementados os recursos de Retry e Circuit Breaker. Caso a integração continue em falha, a API salvará a notificação em uma
 tabela do Aurora. Um Event Bridge deverá ser configurado para realizar consultas periodicamente nessa tabela de notificações pendentes, e, caso encontre registros,
-acionar uma função lambda que tentará notificar o BACEN novamente. Uma outra opção que está disponibilizada na implementação, que substitui o uso do Event Bridge e
-a tabela de notificações pendentes, seria a postagem da notificação em um tópico Kafka, o qual também teria uma função lambda para ler as
-mensagens do tópico e reenviar a notificação para o BACEN.
+acionar uma função lambda que tentará notificar o BACEN novamente.
 
 ## 4. Diagrama de arquitetura
 

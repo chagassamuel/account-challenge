@@ -3,7 +3,6 @@ package br.com.itau.account.challenge.integration.bacen.service;
 import br.com.itau.account.challenge.integration.bacen.client.BacenClient;
 import br.com.itau.account.challenge.integration.bacen.domain.request.BacenRequest;
 import br.com.itau.account.challenge.integration.bacen.domain.response.BacenResponse;
-import br.com.itau.account.challenge.kafka.KafkaProducer;
 import br.com.itau.account.challenge.mapper.BacenMapper;
 import br.com.itau.account.challenge.repository.ErrorNotifyBacenRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -20,7 +19,6 @@ public class BacenService {
     private final BacenClient bacenClient;
     private final BacenMapper bacenMapper;
     private final ErrorNotifyBacenRepository errorNotifyBacenRepository;
-    private final KafkaProducer kafkaProducer;
 
     @Retry(name = "bacenRT", fallbackMethod = "notifyTransferFallback")
     @CircuitBreaker(name = "bacenCB")
@@ -31,7 +29,6 @@ public class BacenService {
     protected BacenResponse notifyTransferFallback(final BacenRequest request, final Throwable e) {
         log.warn("Retry notifyTransferFallback was called", e);
         errorNotifyBacenRepository.save(bacenMapper.toErrorNotifyBacenEntity(request));
-//        kafkaProducer.send();
         return null;
     }
 
