@@ -1,0 +1,170 @@
+{
+  "uuid": "a4683e94-d56a-4a05-8d17-4b51aa72539a",
+  "lastMigration": 32,
+  "name": "ACCOUNT CHALLENGE HW (copy)",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 8094,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "1656d9db-e075-4e49-aa0f-7897ac91076a",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "pessoas_fisicas/41ab9125-adf6-4cdc-8e90-16d4cb7cfa9a",
+      "responses": [
+        {
+          "uuid": "cd65be77-b44d-4ecd-b278-54e7880eeed3",
+          "body": "{\n  \"id_pessoa\": \"41ab9125-adf6-4cdc-8e90-16d4cb7cfa9a\",\n  \"nome_completo\": \"Joao Fulano\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "request_number",
+              "modifier": "",
+              "value": "41ab9125-adf6-4cdc-8e90-16d4cb7cfa9a",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "7312b1d3-efb0-49f4-8820-fd5e107b20ef",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "pessoas_fisicas/f5e78550-9399-46e7-b004-a3189d939b9e",
+      "responses": [
+        {
+          "uuid": "7da44b4a-f0ff-45ea-aefb-13617be390a2",
+          "body": "{\n  \"id_pessoa\": \"f5e78550-9399-46e7-b004-a3189d939b9e\",\n  \"nome_completo\": \"Maria Beltrano\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "request_number",
+              "modifier": "",
+              "value": "41ab9125-adf6-4cdc-8e90-16d4cb7cfa9a",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b13a8af0-858e-47ef-9a2b-8c9af5d0b53b",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "pessoas_fisicas/*",
+      "responses": [
+        {
+          "uuid": "3dd170fe-2f66-47e8-b6ed-18a4ef5bc740",
+          "body": "{\n  \"id_pessoa\": \"66cf2948-1dd9-41b1-80ce-997860c775b3\",\n  \"nome_completo\": \"Samuel Ciclano\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "request_number",
+              "modifier": "",
+              "value": "41ab9125-adf6-4cdc-8e90-16d4cb7cfa9a",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "1656d9db-e075-4e49-aa0f-7897ac91076a"
+    },
+    {
+      "type": "route",
+      "uuid": "7312b1d3-efb0-49f4-8820-fd5e107b20ef"
+    },
+    {
+      "type": "route",
+      "uuid": "b13a8af0-858e-47ef-9a2b-8c9af5d0b53b"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

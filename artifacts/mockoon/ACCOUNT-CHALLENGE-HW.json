@@ -1,0 +1,80 @@
+{
+  "uuid": "92b38d01-bd8a-4226-815a-e3b2f8b1dae8",
+  "lastMigration": 32,
+  "name": "ACCOUNT CHALLENGE BACEN (copy)",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 8095,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "7f526e87-9627-43b4-9698-8b9487b6f653",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "bacen/transfer",
+      "responses": [
+        {
+          "uuid": "2846a221-18fc-40d1-8cd6-1e7d85942bde",
+          "body": " {\r\n  \"id_bacen\": \"367f908c-3c44-4142-aa90-ae0d4ae47fc3\",\r\n  \"effective_date_time\": \"20240312 20:30:40\"\r\n} ",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "SEQUENTIAL"
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "7f526e87-9627-43b4-9698-8b9487b6f653"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
