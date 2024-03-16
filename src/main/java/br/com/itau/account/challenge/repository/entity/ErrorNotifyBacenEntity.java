@@ -25,7 +25,7 @@ public class ErrorNotifyBacenEntity implements Serializable {
     @Column(name = "payload", length = 2000)
     private String payload;
 
-    @Column(name = "date_time_inclusion")
-    private final LocalDateTime dateTimeInclusion = LocalDateTime.now();
+    @Column(name = "inclusion_date_time")
+    private final LocalDateTime inclusionDateTime = LocalDateTime.now();
 
 }

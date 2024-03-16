@@ -1,0 +1,10 @@
+{
+  "idStatement": "572049cd-1c7c-4d1c-804b-7f54682dc171",
+  "value": 500.00,
+  "type": "DEBIT",
+  "effectiveDate": "2024-03-12",
+  "idAccountInvolved": "bdddb305-2bdb-458e-a1ee-448479a5d309",
+  "account": {
+    "idAccount": "438cd6e9-538f-46d7-a97f-124543abf4eb"
+  }
+}

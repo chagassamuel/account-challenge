@@ -1,0 +1,17 @@
+{
+  "origin_account": {
+    "company_code": "341",
+    "agency_number": "0001",
+    "account_number": "123456",
+    "check_digit": "7"
+  },
+  "origin_fullname": "Joao Fulano",
+  "target_account": {
+    "company_code": "341",
+    "agency_number": "0001",
+    "account_number": "789012",
+    "check_digit": "2"
+  },
+  "target_fullname": "Maria Beltrano",
+  "value": 10.00
+}

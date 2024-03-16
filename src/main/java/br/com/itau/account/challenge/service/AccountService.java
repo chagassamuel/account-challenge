@@ -37,8 +37,8 @@ public class AccountService {
         return validateAccountEntity(accountEntity, idAccount);
     }
 
-    public boolean haveSufficientBalance(final AccountEntity accountEntity, final BigDecimal value) {
-        if (BigDecimalUtil.greaterThan(value, accountEntity.getBalance())) {
+    public boolean haveSufficientBalance(final BigDecimal balance, final BigDecimal value) {
+        if (BigDecimalUtil.greaterThan(value, balance)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "insufficient balance");
         }
         return true;

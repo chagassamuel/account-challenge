@@ -23,24 +23,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResourceUtils {
 
-    public static String objectoToJson(final Object value) {
-        try {
-            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(value);
-        } catch (final Exception ex) {
-            log.error(ex.getMessage(), ex);
-            return null;
-        }
-    }
-
-    public static Object getObject(final String file, final TypeReference<?> typeReference) {
-        try {
-            return new ObjectMapper().readValue(getResource(file), typeReference);
-        } catch (final Exception ex) {
-            log.error(ex.getMessage(), ex);
-            return null;
-        }
-    }
-
     public static Object getObject(final String file, final Class clazz) {
         final ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -61,7 +43,6 @@ public class ResourceUtils {
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
 
         try {
             final Class<T[]> arrayClass = (Class<T[]>) Class.forName("[L" + clazz.getName() + ";");

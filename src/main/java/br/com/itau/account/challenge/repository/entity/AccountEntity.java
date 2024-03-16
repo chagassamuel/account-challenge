@@ -29,7 +29,7 @@ public class AccountEntity implements Serializable {
     private String agencyNumber;
 
     @Column(name = "account_number")
-    private String account_number;
+    private String accountNumber;
 
     @Column(name = "check_digit")
     private String checkDigit;

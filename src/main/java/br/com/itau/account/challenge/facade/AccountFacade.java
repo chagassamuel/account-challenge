@@ -38,7 +38,7 @@ public class AccountFacade {
 
     public void transfer(final TransferAccountRequest transferAccountRequest) {
         final AccountEntity originAccountEntity = accountService.getActiveAccount(transferAccountRequest.idOriginAccount());
-        if (accountService.haveSufficientBalance(originAccountEntity, transferAccountRequest.value())
+        if (accountService.haveSufficientBalance(originAccountEntity.getBalance(), transferAccountRequest.value())
                 && accountService.haveDailyTransferLimit(transferAccountRequest.idOriginAccount(), transferAccountRequest.value())) {
 
             final AccountEntity targetAccountEntity = accountService.getActiveAccount(transferAccountRequest.idTargetAccount());

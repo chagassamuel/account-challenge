@@ -1,0 +1,10 @@
+{
+  "idAccount": "438cd6e9-538f-46d7-a97f-124543abf4eb",
+  "idPerson": "41ab9125-adf6-4cdc-8e90-16d4cb7cfa9a",
+  "companyCode": "341",
+  "agencyNumber": "0001",
+  "accountNumber": "123456",
+  "checkDigit": "7",
+  "balance": 10000.00,
+  "status": "ACTIVE"
+}

@@ -1,4 +1,4 @@
-package br.com.itau.account.challenge.controller.domain;
+package br.com.itau.account.challenge.controller;
 
 import br.com.itau.account.challenge.controller.domain.request.TransferAccountRequest;
 import br.com.itau.account.challenge.controller.domain.response.BalanceAccountResponse;

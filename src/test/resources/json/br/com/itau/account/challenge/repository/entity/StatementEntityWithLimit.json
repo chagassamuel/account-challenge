@@ -1,0 +1,32 @@
+[
+  {
+    "idStatement": "572049cd-1c7c-4d1c-804b-7f54682dc171",
+    "value": 500.00,
+    "type": "DEBIT",
+    "effectiveDate": "2024-03-12",
+    "idAccountInvolved": "bdddb305-2bdb-458e-a1ee-448479a5d309",
+    "account": {
+      "idAccount": "438cd6e9-538f-46d7-a97f-124543abf4eb"
+    }
+  },
+  {
+    "idStatement": "967ee74d-153c-4a67-a7d9-24a49a3d9e72",
+    "value": 400.00,
+    "type": "DEBIT",
+    "effectiveDate": "2024-03-12",
+    "idAccountInvolved": "bdddb305-2bdb-458e-a1ee-448479a5d309",
+    "account": {
+      "idAccount": "438cd6e9-538f-46d7-a97f-124543abf4eb"
+    }
+  },
+  {
+    "idStatement": "8796f6d4-60a8-4eb1-995f-9becd35ef42e",
+    "value": 50.00,
+    "type": "DEBIT",
+    "effectiveDate": "2024-03-12",
+    "idAccountInvolved": "bdddb305-2bdb-458e-a1ee-448479a5d309",
+    "account": {
+      "idAccount": "438cd6e9-538f-46d7-a97f-124543abf4eb"
+    }
+  }
+]

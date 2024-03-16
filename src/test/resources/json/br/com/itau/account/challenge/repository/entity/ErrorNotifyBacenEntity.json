@@ -1,0 +1,5 @@
+{
+  "id_error_notify_bacen": "26f830d5-e443-4e30-85c3-856d6e429be0",
+  "inclusion_date_time": "20240312 20:30:40",
+  "payload": "{\"origin_account\":{\"company_code\":\"341\",\"agency_number\":\"0001\",\"account_number\":\"123456\",\"check_digit\":\"7\"},\"origin_fullname\":\"Joao Fulano\",\"target_account\":{\"company_code\":\"341\",\"agency_number\":\"0001\",\"account_number\":\"789012\",\"check_digit\":\"2\"},\"target_fullname\":\"Maria Beltrano\",\"value\":10.00}"
+}

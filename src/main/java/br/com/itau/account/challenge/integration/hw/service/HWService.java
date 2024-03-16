@@ -9,10 +9,8 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -30,32 +28,33 @@ public class HWService {
     @Retry(name = "personRT", fallbackMethod = "getPersonFullnameFallback")
     @CircuitBreaker(name = "personCB")
     public String getPersonFullname(final String idPerson) {
-        return this.getPerson(idPerson).fullname();
+        final HWResponse hwResponse = this.getPersonWithCache(idPerson);
+        return isNull(hwResponse) ? StringUtils.EMPTY : hwResponse.fullname();
     }
 
-    public HWResponse getPerson(final String idPerson) {
+    public HWResponse getPersonWithCache(final String idPerson) {
         final Optional<PersonCacheEntity> cacheEntity = personCacheRepository.findById(idPerson);
         if (cacheEntity.isPresent()) {
             return hwMapper.toHWResponse(cacheEntity.get());
         }
 
-        final HWResponse hwResponse = getPersonHW(idPerson);
+        final HWResponse hwResponse = this.getPerson(idPerson);
+        if (isNull(hwResponse)) {
+            return null;
+        }
+
         personCacheRepository.save(hwMapper.toPersonCacheEntity(hwResponse));
 
         return hwResponse;
     }
 
-    private HWResponse getPersonHW(final String idPerson) {
-        final ResponseEntity<HWResponse> hwResponse = hwClient.getPerson(idPerson);
-        if (isNull(hwResponse.getBody())) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("person with id='%s' not found", idPerson));
-        }
-        return hwResponse.getBody();
+    public HWResponse getPerson(final String idPerson) {
+        return hwClient.getPerson(idPerson).getBody();
     }
 
-    private String getPersonFullnameFallback(final Throwable e) {
+    protected String getPersonFullnameFallback(final Throwable e) {
         log.warn("Retry getPersonFullnameFallback was called", e);
-        return "";
+        return StringUtils.EMPTY;
     }
 
 }

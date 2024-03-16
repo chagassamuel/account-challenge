@@ -28,7 +28,7 @@ public class BacenService {
         return bacenClient.notifyTransfer(request).getBody();
     }
 
-    private BacenResponse notifyTransferFallback(final BacenRequest request, final Throwable e) {
+    protected BacenResponse notifyTransferFallback(final BacenRequest request, final Throwable e) {
         log.warn("Retry notifyTransferFallback was called", e);
         errorNotifyBacenRepository.save(bacenMapper.toErrorNotifyBacenEntity(request));
 //        kafkaProducer.send();

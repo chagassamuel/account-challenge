@@ -26,11 +26,11 @@ public class PersonCacheRepository {
         return Optional.ofNullable(redisTemplate.opsForValue().get(id));
     }
 
-    private void saveFallback(final Throwable e) {
+    protected void saveFallback(final Throwable e) {
         log.warn("CB saveFallback was called", e);
     }
 
-    private Optional<PersonCacheEntity> findFallback(final Throwable e) {
+    protected Optional<PersonCacheEntity> findFallback(final Throwable e) {
         log.warn("CB findFallback was called", e);
         return Optional.empty();
     }
