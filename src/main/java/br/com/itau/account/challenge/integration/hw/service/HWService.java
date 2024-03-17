@@ -53,7 +53,7 @@ public class HWService {
     }
 
     protected String getPersonFullnameFallback(final Throwable e) {
-        log.warn("Retry getPersonFullnameFallback was called", e);
+        log.warn("Retry getPersonFullnameFallback was called: {}", e.getMessage());
         return StringUtils.EMPTY;
     }
 

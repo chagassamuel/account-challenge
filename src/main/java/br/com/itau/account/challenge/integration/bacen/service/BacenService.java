@@ -27,7 +27,7 @@ public class BacenService {
     }
 
     protected BacenResponse notifyTransferFallback(final BacenRequest request, final Throwable e) {
-        log.warn("Retry notifyTransferFallback was called", e);
+        log.warn("Retry notifyTransferFallback was called: {}", e.getMessage());
         errorNotifyBacenRepository.save(bacenMapper.toErrorNotifyBacenEntity(request));
         return null;
     }
